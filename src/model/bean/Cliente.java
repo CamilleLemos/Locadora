@@ -6,9 +6,11 @@ public class Cliente {
 	private String email;
 	private int idade;
 	
+	
 	public int getIdCliente() {
 		return idCliente;
 	}
+	
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}

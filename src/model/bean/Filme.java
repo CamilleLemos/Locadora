@@ -10,6 +10,7 @@ public class Filme {
 	private String categoria;
 	public int getIdFilme() {
 		return idFilme;
+		
 	}
 	public void setIdFilme(int idFilme) {
 		this.idFilme = idFilme;
