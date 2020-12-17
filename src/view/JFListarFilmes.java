@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,6 +18,8 @@ import model.bean.Filme;
 import model.dao.FilmeDAO;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JFListarFilmes extends JFrame {
 
@@ -79,6 +83,21 @@ public class JFListarFilmes extends JFrame {
 		contentPane.add(btnCadastrar);
 		
 		JButton btnAlterar = new JButton("Alterar Filme");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				public void actionPerformed(ActionEvent e) {
+										
+					if(jtFilme.getSelectedRow()!= -1) {
+						JFatualizarFilme af = new JFatualizarFilme(
+								(int)jtFilme.getValueAt(jtFilme.getSelectedRow(), 0));
+						af.setVisible(true);						
+					}else {
+						JOptionPane.showMessageDialog(null, "Selecione um filme!");
+					}
+					readJTable();
+				}
+			}
+		});
 		btnAlterar.setBounds(173, 322, 136, 23);
 		contentPane.add(btnAlterar);
 		
