@@ -7,7 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +22,7 @@ import model.bean.Filme;
 import model.dao.ClienteDAO;
 import model.dao.FilmeDAO;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 
 public class jfListarClientes extends JFrame {
@@ -84,7 +90,28 @@ public class jfListarClientes extends JFrame {
 		btnAlterarC.setBounds(197, 362, 136, 23);
 		contentPane.add(btnAlterarC);
 		
+		
 		JButton btnExcluirC = new JButton("Excluir Cliente");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if(jtClientes.getSelectedColumn() != -1) {
+					int opcao = JOptionPane.showConfirmDialog(null, "Deseja excluir o cliente selecionado?","Exclusão", JOptionPane.YES_NO_OPTION);
+
+					if(opcao == 0) {
+						ClienteDAO dao = new ClienteDAO();
+						Cliente c = new Cliente();
+						c.setIdCliente((int) jtClientes.getValueAt(jtClientes.getSelectedRow(), 0));
+						dao.delete(c);
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Selecione um cliente!");					
+				}
+				readJTable();	
+			}
+		});
+		
 		btnExcluirC.setBounds(370, 362, 131, 23);
 		contentPane.add(btnExcluirC);
 		
