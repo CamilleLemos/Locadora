@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 
 import connection.ConnectionFactory;
+import model.bean.Cliente;
 import model.bean.Filme;
 
 public class FilmeDAO {
@@ -118,4 +119,25 @@ public class FilmeDAO {
 				ConnectionFactory.closeConnection(con, stmt);
 			}
         }
+        
+        public void delete(Filme f) {
+    		Connection con = ConnectionFactory.getConnection();
+    		PreparedStatement stmt = null;
+
+    		try {
+    			stmt = con.prepareStatement("DELETE FROM filme WHERE idFilme=?");
+    			stmt.setInt(1, f.getIdFilme());
+    			stmt.executeUpdate();
+    			JOptionPane.showMessageDialog(null, "Filme excluído com sucesso!");
+
+    		} catch (SQLException e) {
+    			JOptionPane.showMessageDialog(null, "Erro ao excluir: "+ e);
+
+    		} finally {
+    			ConnectionFactory.closeConnection(con, stmt);
+    		}
+
+
+    	}
+
 }

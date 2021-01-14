@@ -50,6 +50,14 @@ public class JFListarFilmes extends JFrame {
 	 * Create the frame.
 	 */
 	public JFListarFilmes() {
+		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(10, 11, 46, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		getContentPane().add(lblNewLabel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 424);
 		contentPane = new JPanel();
@@ -98,12 +106,38 @@ public class JFListarFilmes extends JFrame {
 				}
 			}
 		});
+		
 		btnAlterar.setBounds(173, 322, 136, 23);
 		contentPane.add(btnAlterar);
+		
+		contentPane.add(btnAlterar);
+
+
+		JButton btnExcluir = new JButton("Excluir Filme");			
+		
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(jtFilmes.getSelectedColumn() != -1) {
+					int opcao = JOptionPane.showConfirmDialog(null, "Deseja excluir o filme selecionado?","Exclusão", JOptionPane.YES_NO_OPTION);
+
+					if(opcao == 0) {
+						FilmeDAO dao = new FilmeDAO();
+						Filme f = new Filme();
+						f.setIdFilme((int) jtFilmes.getValueAt(jtFilmes.getSelectedRow(), 0));
+						dao.delete(f);
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Selecione um filme!");					
+				}
+				readJTable();	
+			}
+		});
 		
 		JButton btnExcluir = new JButton("Excluir Filme");
 		btnExcluir.setBounds(360, 322, 130, 23);
 		contentPane.add(btnExcluir);
+		
 		
 		readJTable();
 	}
