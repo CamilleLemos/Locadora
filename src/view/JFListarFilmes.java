@@ -56,8 +56,8 @@ public class JFListarFilmes extends JFrame {
 		lblNewLabel.setBounds(10, 11, 46, 14);
 		getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		getContentPane().add(lblNewLabel, BorderLayout.CENTER);
+		JLabel lblNewLabel1 = new JLabel("New label");
+		getContentPane().add(lblNewLabel1, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 424);
 		contentPane = new JPanel();
@@ -65,10 +65,10 @@ public class JFListarFilmes extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Listar Filmes");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(10, 11, 153, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblNewLabel11 = new JLabel("Listar Filmes");
+		lblNewLabel11.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel11.setBounds(10, 11, 153, 14);
+		contentPane.add(lblNewLabel11);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 38, 504, 254);
@@ -138,20 +138,30 @@ public class JFListarFilmes extends JFrame {
 		btnExcluir.setBounds(360, 322, 130, 23);
 		contentPane.add(btnExcluir);
 		
+		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		btnNewButton.setBounds(466, 434, 111, 23);
+		contentPane.add(btnNewButton);
 		
 		readJTable();
+		
 	}
 		public void readJTable() {
-			DefaultTableModel modelo = (DefaultTableModel) jtFilme.getModel();
-			modelo.setNumRows(0);
-			FilmeDAO fdao = new FilmeDAO();
-			for(Filme f: fdao.read()) {
-				modelo.addRow(new Object[] {
-						f.getIdFilme(),
-						f.getTitulo(),
-						f.getCategoria(),
-						f.getTempo()
-				});
+		DefaultTableModel modelo = (DefaultTableModel) jtFilme.getModel();
+		modelo.setNumRows(0);
+		FilmeDAO fdao = new FilmeDAO();
+		for(Filme f : fdao.read()) {
+			modelo.addRow(new Object[] {
+					f.getIdFilme(),
+					f.getTitulo(),
+					f.getCategoria(),
+					f.getTempo()
+			});
 			}
 			
 			

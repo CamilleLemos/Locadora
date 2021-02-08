@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -194,14 +193,35 @@ public class JFatualizarFilme extends JFrame {
 					f.setDublado(false);
 				}
 				dao.update(f);
+				dispose();
+				
 			}
 		});
 		buttonAlterar.setBounds(10, 352, 89, 23);
 		contentPane.add(buttonAlterar);
 		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textoTitulo.setText(null);
+				textoSinopse.setText(null);
+				textoCategoria.setText(null);
+				buttonTempo.setValue(0);
+				imagem.clearSelection();
+				audio.clearSelection();				
+			}
+		});
+		
 		JButton buttonLimpar = new JButton("Limpar");
 		buttonLimpar.setBounds(150, 352, 89, 23);
 		contentPane.add(buttonLimpar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		
 		JButton buttonCancelar = new JButton("Cancelar");
 		buttonCancelar.setBounds(299, 352, 89, 23);

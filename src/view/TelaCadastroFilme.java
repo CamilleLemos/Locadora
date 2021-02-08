@@ -161,16 +161,35 @@ public class TelaCadastroFilme extends JFrame {
 					f.setDublado(false);
 				}
 				dao.create(f);
+				dispose();
 			}
 		});
 		buttonCadastrar.setBounds(10, 352, 89, 23);
 		contentPane.add(buttonCadastrar);
 		
-		JButton buttonLimpar = new JButton("Limpar");
-		buttonLimpar.setBounds(150, 352, 89, 23);
-		contentPane.add(buttonLimpar);
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textoTitulo.setText(null);
+				textoSinopse.setText(null);
+				textoCategoria.setText(null);
+				buttonTempo.setValue(0);
+				imagem.clearSelection();
+				audio.clearSelection();
+			}
+		});
+		
+		btnLimpar.setBounds(150, 352, 89, 23);
+		contentPane.add(btnLimpar);
 		
 		JButton buttonCancelar = new JButton("Cancelar");
+		buttonCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		
 		buttonCancelar.setBounds(299, 352, 89, 23);
 		contentPane.add(buttonCancelar);
 	}
